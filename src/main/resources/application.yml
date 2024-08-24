@@ -4,6 +4,11 @@ server:
 
 
 spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    
   jpa.hibernate:
         ddl-auto: update
   application:
