@@ -27,7 +27,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Install dependencies
+      run: mvn install
+    - name: Build and package
+      run: mvn package
+    - name: Run integration tests
+      run: mvn test
+    - name: Deploy to MySQL
+      env:
+          SPRING_PROFILES_ACTIVE: production
+          MYSQL_URL: "jdbc:mysql://localhost:3306/udemy"
+          MYSQL_USERNAME: "root"
+          MYSQL_PASSWORD: "root"
       run: mvn clean install
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
